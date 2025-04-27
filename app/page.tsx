@@ -15,6 +15,7 @@ export default function Home() {
   const { results, loading, error, totalResults, currentPage, searchProperties, setCurrentPage } = usePropertySearch();
   const [hasSearched, setHasSearched] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [searchValues, setSearchValues] = useState<PropertySearchParams>({});
 
   // Track scroll position
   useEffect(() => {
@@ -31,13 +32,17 @@ export default function Home() {
     const loadInitialProperties = async () => {
       const apiUrl = `/api/treb/properties?limit=10&page=1`;
       await searchProperties({}, apiUrl);
-      setHasSearched(true);
+      // Don't set hasSearched to true on initial load
+      // setHasSearched(true);
     };
     
     loadInitialProperties();
   }, []);
 
   const handleSearch = (params: PropertySearchParams) => {
+    // Save search values
+    setSearchValues(params);
+    
     // Update the URL to use the TREB API instead of the mock IDX API
     const apiUrl = `/api/treb/properties?limit=${params.limit || 10}&page=${params.page || 1}`;
     
@@ -200,7 +205,7 @@ export default function Home() {
               </div>
             </div>
             
-            <PropertySearch onSearch={handleSearch} isLoading={loading} compact={true} />
+            <PropertySearch onSearch={handleSearch} isLoading={loading} compact={true} defaultValues={searchValues} />
           </motion.aside>
           
           {/* Sticky Search Bar for Mobile - Only shows after scrolling */}
@@ -291,7 +296,7 @@ export default function Home() {
               <p className="mt-1">Royal LePage Your Community Realty, Brokerage</p>
             </div>
           </div>
-        </div>
+      </div>
       </footer>
     </main>
   );

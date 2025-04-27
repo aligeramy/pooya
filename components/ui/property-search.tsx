@@ -18,17 +18,26 @@ export type PropertySearchProps = {
   }) => void;
   isLoading?: boolean;
   compact?: boolean;
+  defaultValues?: {
+    query?: string;
+    city?: string;
+    minPrice?: string;
+    maxPrice?: string;
+    propertyType?: string;
+    bedrooms?: string;
+    bathrooms?: string;
+  };
 };
 
-export function PropertySearch({ onSearch, isLoading, compact = false }: PropertySearchProps) {
-  const [query, setQuery] = useState('');
-  const [city, setCity] = useState('');
+export function PropertySearch({ onSearch, isLoading, compact = false, defaultValues = {} }: PropertySearchProps) {
+  const [query, setQuery] = useState(defaultValues.query || '');
+  const [city, setCity] = useState(defaultValues.city || '');
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
-  const [propertyType, setPropertyType] = useState('');
-  const [bedrooms, setBedrooms] = useState('');
-  const [bathrooms, setBathrooms] = useState('');
+  const [minPrice, setMinPrice] = useState(defaultValues.minPrice || '');
+  const [maxPrice, setMaxPrice] = useState(defaultValues.maxPrice || '');
+  const [propertyType, setPropertyType] = useState(defaultValues.propertyType || '');
+  const [bedrooms, setBedrooms] = useState(defaultValues.bedrooms || '');
+  const [bathrooms, setBathrooms] = useState(defaultValues.bathrooms || '');
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

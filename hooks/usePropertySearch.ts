@@ -83,14 +83,21 @@ export function usePropertySearch() {
               if (mediaResponse.ok) {
                 const mediaData = await mediaResponse.json();
                 if (mediaData.media && mediaData.media.length > 0) {
-                  // Filter to remove duplicate variants of same image
-                  const uniqueImages = new Map();
-                  mediaData.media.forEach((media: any) => {
-                    if (!media.id.includes('-')) {
-                      uniqueImages.set(media.order, media.url);
-                    }
-                  });
-                  listing.images = Array.from(uniqueImages.values());
+                  // Filter out image variants (sizes) and only keep the main images
+                  const uniqueImages = mediaData.media
+                    .filter((media: any) => !media.id.includes('-')) // Filter out size variants
+                    .map((media: any) => media.url); // Extract URLs
+                  
+                  // Use the medium size variants instead for better performance
+                  if (uniqueImages.length === 0) {
+                    const mediumImages = mediaData.media
+                      .filter((media: any) => media.id.includes('-m'))
+                      .map((media: any) => media.url);
+                    
+                    listing.images = mediumImages.length > 0 ? mediumImages : ['/images/property-placeholder.jpg'];
+                  } else {
+                    listing.images = uniqueImages;
+                  }
                 }
               }
               return listing;
