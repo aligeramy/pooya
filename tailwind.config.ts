@@ -12,7 +12,11 @@ const config: Config = {
     extend: {
       colors: {
         primary: "#1a2e4c",
-        secondary: "#f8f5f2",
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+          light: "#f8f5f2",
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -22,11 +26,6 @@ const config: Config = {
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
-        },
-
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -63,7 +62,8 @@ const config: Config = {
       },
       fontFamily: {
         serif: ["var(--font-playfair)"],
-        sans: ["var(--font-lato)"],
+        sans: ["var(--font-montserrat)"],
+        montserrat: ["var(--font-montserrat)"],
       },
       borderRadius: {
         lg: "var(--radius)",

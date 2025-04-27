@@ -55,9 +55,8 @@ export default function Home() {
       />
       <main className="min-h-screen flex flex-col items-center justify-center bg-[#f5f2e9] text-[#3c2f1f]">
         <div className="text-center p-8 max-w-4xl">
-          <h1 className="text-4xl md:text-6xl font-serif mb-6">Pooya Pirayeshakbari</h1>
-          <h2 className="text-2xl md:text-3xl font-serif mb-12">Luxury Real Estate</h2>
-          <p className="text-xl mb-8">We will be back shortly.</p>
+          <h1 className="text-4xl md:text-6xl font-serif mb-6">Pooya Pirayesh</h1>
+          <p className="text-md mb-8 font-montserrat font-medium tracking-widest">WE WILL BE BACK SHORTLY</p>
           
           {/* Hidden SEO content that will be crawled but not visible to users */}
           <div className="hidden">

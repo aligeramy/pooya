@@ -16,8 +16,12 @@ body {
   font-family: var(--font-playfair);
 }
 
+.font-montserrat {
+  font-family: var(--font-montserrat);
+}
+
 body {
-  font-family: var(--font-lato);
+  font-family: var(--font-montserrat);
 }
 
 @layer utilities {
