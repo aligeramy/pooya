@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Playfair_Display, Montserrat } from "next/font/google"
 import "./globals.css"
 
@@ -15,6 +15,14 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
   display: "swap",
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#f5f2e9'
+}
 
 export const metadata: Metadata = {
   title: "Pooya Pirayeshakbari | Luxury Real Estate | Coming Soon",

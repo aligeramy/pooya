@@ -1,6 +1,7 @@
 "use client"
 
 import Script from "next/script"
+import Image from "next/image"
 
 // Metadata must be exported from layout.tsx, not page.tsx in Next.js App Router
 // The SEO content will still be present in the page
@@ -53,10 +54,20 @@ export default function Home() {
           })
         }}
       />
-      <main className="min-h-screen flex flex-col items-center justify-center bg-[#f5f2e9] text-[#3c2f1f]">
-        <div className="text-center p-8 max-w-4xl">
-          <h1 className="text-4xl md:text-6xl font-serif mb-6">Pooya Pirayesh</h1>
-          <p className="text-md mb-8 font-montserrat font-medium tracking-widest">WE WILL BE BACK SHORTLY</p>
+      <main className="min-h-screen flex flex-col items-center justify-center bg-[#f5f2e9] text-[#3c2f1f] px-4 py-6 sm:p-8">
+        <div className="text-center w-full max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto">
+          <div className="flex justify-center mb-6">
+            <Image 
+              src="/logo.png" 
+              alt="Pooya Pirayesh Logo" 
+              width={40} 
+              height={90} 
+              className="object-contain"
+              priority
+            />
+          </div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif mb-4 sm:mb-6 leading-tight">Pooya Pirayesh</h1>
+          <p className="text-xs sm:text-sm md:text-md font-montserrat font-medium tracking-widest mb-6 sm:mb-8 px-2">WE WILL BE BACK SHORTLY</p>
           
           {/* Hidden SEO content that will be crawled but not visible to users */}
           <div className="hidden">
