@@ -48,12 +48,29 @@ export default function PropertyDetail({ params }: { params: { id: string }}) {
           if (mediaRes.ok) {
             const mediaData = await mediaRes.json();
             
-            // Add media URLs to the property
+            // If we have media, process it
             if (mediaData.media && mediaData.media.length > 0) {
-              propertyDetails.images = mediaData.media.map((item: any) => item.url);
+              // Filter and select images - prefer main images but use mediums if needed
+              const mainImages = mediaData.media
+                .filter((media: any) => !media.id.includes('-'))
+                .map((media: any) => media.url);
+                
+              if (mainImages.length > 0) {
+                propertyDetails.images = mainImages;
+              } else {
+                // Use medium-sized images if main ones aren't available
+                const mediumImages = mediaData.media
+                  .filter((media: any) => media.id.includes('-m'))
+                  .map((media: any) => media.url);
+                
+                if (mediumImages.length > 0) {
+                  propertyDetails.images = mediumImages;
+                }
+              }
             }
           }
           
+          // Set the property with the images (or an empty array if none were found)
           setProperty(propertyDetails);
         } else {
           throw new Error('Property not found');
@@ -123,7 +140,7 @@ export default function PropertyDetail({ params }: { params: { id: string }}) {
 
   // Ensure we have at least one image
   const propertyImages = images.length > 0 
-    ? images.map(img => img.startsWith('/') ? img : `/${img}`)
+    ? images 
     : ['/images/property-placeholder.jpg'];
 
   return (
