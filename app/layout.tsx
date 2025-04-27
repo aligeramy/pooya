@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Playfair_Display, Montserrat } from "next/font/google"
+import Script from "next/script"
 import "./globals.css"
 
 const playfair = Playfair_Display({
@@ -25,15 +26,15 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: "Pooya Pirayeshakbari | Luxury Real Estate | Coming Soon",
-  description: "Specializing in luxury properties and investment opportunities in the Greater Toronto Area. Exclusive high-end homes, condos, and investment properties coming soon.",
+  title: "Pooya Pirayesh | Luxury Real Estate",
+  description: "Specializing in luxury properties and investment opportunities in the Greater Toronto Area. Explore exclusive high-end homes, condos, and investment properties.",
   keywords: "luxury real estate, Greater Toronto Area, high-end properties, investment opportunities, luxury homes, exclusive properties, Toronto real estate",
   generator: "Next.js",
-  applicationName: "Pooya Pirayeshakbari Luxury Real Estate",
+  applicationName: "Pooya Pirayesh Luxury Real Estate",
   referrer: "origin-when-cross-origin",
-  authors: [{ name: "Pooya Pirayeshakbari" }],
-  creator: "Pooya Pirayeshakbari",
-  publisher: "Pooya Pirayeshakbari Luxury Real Estate",
+  authors: [{ name: "Pooya Pirayesh" }],
+  creator: "Pooya Pirayesh",
+  publisher: "Pooya Pirayesh Luxury Real Estate",
   formatDetection: {
     email: false,
     address: false,
@@ -44,16 +45,16 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Pooya Pirayeshakbari | Luxury Real Estate",
+    title: "Pooya Pirayesh | Luxury Real Estate",
     description: "Specializing in luxury properties and investment opportunities in the Greater Toronto Area.",
     url: "https://www.pooyarealestate.com/",
-    siteName: "Pooya Pirayeshakbari Luxury Real Estate",
+    siteName: "Pooya Pirayesh Luxury Real Estate",
     images: [
       {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Pooya Pirayeshakbari Luxury Real Estate",
+        alt: "Pooya Pirayesh Luxury Real Estate",
       },
     ],
     locale: "en_US",
@@ -72,7 +73,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pooya Pirayeshakbari | Luxury Real Estate",
+    title: "Pooya Pirayesh | Luxury Real Estate",
     description: "Specializing in luxury properties and investment opportunities in the Greater Toronto Area.",
     images: ["/images/twitter-image.jpg"],
     creator: "@pooyarealestate",
@@ -121,7 +122,54 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${playfair.variable} ${montserrat.variable}`}>{children}</body>
+      <body className={`${playfair.variable} ${montserrat.variable}`}>
+        <Script
+          id="structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "RealEstateAgent",
+              "name": "Pooya Pirayesh Luxury Real Estate",
+              "image": "https://www.pooyarealestate.com/images/pooya.png",
+              "description": "Specializing in luxury properties and investment opportunities in the Greater Toronto Area.",
+              "url": "https://www.pooyarealestate.com",
+              "telephone": "+1-416-555-1234",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "123 Luxury Avenue",
+                "addressLocality": "Toronto",
+                "addressRegion": "ON",
+                "postalCode": "M5V 2K4",
+                "addressCountry": "CA"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 43.6532,
+                "longitude": -79.3832
+              },
+              "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday"
+                ],
+                "opens": "09:00",
+                "closes": "17:00"
+              },
+              "sameAs": [
+                "https://www.facebook.com/pooyarealestate",
+                "https://www.instagram.com/pooyarealestate",
+                "https://www.linkedin.com/in/pooyarealestate"
+              ]
+            })
+          }}
+        />
+        {children}
+      </body>
     </html>
   )
 }
